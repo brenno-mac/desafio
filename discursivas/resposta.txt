@@ -1,0 +1,19 @@
+
+
+###Otimize consultas e justifique a criação de índices
+
+"""Como essa é uma estrutura de dados bem granular, e todas as queries feitas possuem joins, parte da otimização seria criar índices nas colunas mais comuns, como que as são objeto de joins, como id_munic e id_estado. 
+Também seria possível desconstruir algumas subqueries apresentadas em queries únicas, elevando a otimização com o preço de potencialmente diminuir a legibilidade das queries 
+"""
+
+###Descreva estratégias de escalabilidade para grandes volumes de dados
+
+"""
+Visto que as tabelas primárias de estado, cidade, demografia, exportação/importação e geolocalização são tabelas pequenas para os volumes de dados operados costumariamente nos dias atuais, a maior preocupação de escalabilidade seria na parte de modelagem preditiva, onde seria importante criar índices e particionar essa tabela para evitar consultas mais custosas que o necessário
+"""
+
+###Automação do Pipeline ETL: explique como uma automação do pipeline ETL poderia ser implementada em um cenário real
+
+"""
+Para garantir que as informações usadas para a modelagem preditiva sejam as mais atuais disponíveis, documentaria as fontes de dados usadas, como a API do IBGE, e utilizaria o Airflow, ou um serviço em nuvem como o Dataflow do Google, para fazer consultas de maneira recorrente à API e comparar com os dados atuais do banco para que, quando a API disponibilize novos dados, o banco seja alimentado com as informações mais relevantes
+"""

@@ -1,0 +1,52 @@
+###Tabelas criadas para ilustrar uma modelagem de dados pensada em modelagem preditiva###
+
+
+MODELOS_PREDITIVOS
+tbl_modelos(id_modelo, nome_modelo, descricao_modelo)
+
+"""
+create table desafio.tbl_modelos (
+  id_modelo int options(description='ID do modelo a ser usado'),
+  nome_modelo string options(description='Nome do modelo'),
+  descricao_modelo string options(description='Descrição do modelo'),
+  primary key (id_modelo) not enforced
+) options (
+  description='Tabela contendo modelos'
+)
+"""
+
+PARAMETROS_MODELO
+tbl_modelos_param(id_parametro, id_modelo, nome_parametro, valor_parametro)
+
+"""
+create table desafio.tbl_modelos_param (
+  id_param int options(description='ID do parâmetro do modelo'),
+  id_modelo int options(description='ID do modelo a ser usado'),
+  nome_parametro string options(description='Nome do parâmetro'),
+  valor_parametro float64 options(description='Valor do parâmetro'),
+  primary key (id_param) not enforced, 
+  CONSTRAINT id_modelo FOREIGN KEY (id_modelo) REFERENCES desafio.tbl_modelos(id_modelo) NOT ENFORCED
+) options (
+  description='Tabela contendo parâmetros dos modelos'
+)
+"""
+
+PRODUTIVIDADE_PREVISTA
+tbl_munic_produtividade_prevista(id_previsao, id_munic, id_modelo, id_parametro, ano, produtividade_prevista)
+
+"""
+create table desafio.tbl_munic_produtividade_prevista (
+  id_previsao int options(description='ID da previsão feita'),
+  id_munic int options(description='ID do município'),
+  id_modelo int options(description='ID do modelo a ser usado'),
+  id_param int options(description='ID do parâmetro'),
+  ano int options(description='Ano da previsão'),
+  produtividade_prevista float64 options(description='Valor da produtividade prevista para o município'),
+  primary key (id_previsao) not enforced, 
+  CONSTRAINT id_modelo FOREIGN KEY (id_modelo) REFERENCES desafio.tbl_modelos(id_modelo) NOT ENFORCED,
+  CONSTRAINT id_munic FOREIGN KEY (id_munic) REFERENCES desafio.tbl_munic(id_munic) NOT ENFORCED
+) options (
+  description='Tabela contendo previsão de produtividade prevista para os municípios'
+)
+"""
+
